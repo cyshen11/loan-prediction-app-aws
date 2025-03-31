@@ -162,6 +162,5 @@ cython_debug/
 #.idea/
 .DS_Store
 financial2.sql
-user.pem
-user2.pem
+*.pem
 .streamlit/secrets.toml
