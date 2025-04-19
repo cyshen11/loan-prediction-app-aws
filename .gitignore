@@ -169,4 +169,4 @@ financial2.sql
 datasets/
 
 # AWS SAM
-app/aws-sam/
+app/.aws-sam/
