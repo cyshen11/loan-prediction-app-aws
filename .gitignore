@@ -170,4 +170,3 @@ datasets/
 
 # AWS SAM
 app/aws-sam/
-.toml
