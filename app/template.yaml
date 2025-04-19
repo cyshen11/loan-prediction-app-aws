@@ -1,0 +1,37 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: loan-prediction-app
+
+Globals:
+  Function:
+    Tags:
+      project: 'loan-prediction-app'
+    Timeout: 3
+    MemorySize: 128
+    Runtime: python3.10
+    Layers:
+      - !Sub arn:aws:lambda:${AWS::Region}:753240598075:layer:LambdaAdapterLayerArm64:17
+    LoggingConfig:
+      LogFormat: JSON
+      LogGroup: !Sub /aws/lambda/${AWS::StackName}
+    Architectures:
+      - arm64 #Graviton: cheaper and faster
+
+Resources:
+  HelloWorldFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: flask/
+      Handler: run.sh #required for the Lambda Web Adapter
+      Events:
+        HelloWorld:
+          Type: HttpApi
+      Environment:
+        Variables:
+          AWS_LAMBDA_EXEC_WRAPPER: /opt/bootstrap
+          PORT: 8000
+
+Outputs:
+  HelloWorldApi:
+    Description: API Gateway endpoint URL for Hello World function
+    Value: !Sub 'https://${ServerlessHttpApi}.execute-api.${AWS::Region}.${AWS::URLSuffix}/'
