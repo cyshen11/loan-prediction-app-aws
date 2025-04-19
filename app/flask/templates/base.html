@@ -4,10 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
     <title>{% block title %} {% endblock %}</title>
     <style type="text/tailwindcss">
       @theme {
         --color-clifford: #da373d;
+        --font-sans: InterVariable, sans-serif;
       }
     </style>
     <title>Loan Prediction App</title>
@@ -75,11 +77,9 @@
       </header>
       <main>
         <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-          <!-- Your content -->
+          {% block content %} {% endblock %}
         </div>
       </main>
     </div>
-
-    {% block content %} {% endblock %}
   </body>
 </html>
