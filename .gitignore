@@ -167,3 +167,7 @@ financial2.sql
 
 # Datasets
 datasets/
+
+# AWS SAM
+app/aws-sam/
+.toml
