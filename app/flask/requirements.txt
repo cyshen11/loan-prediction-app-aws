@@ -7,4 +7,5 @@ itsdangerous
 Jinja2
 MarkupSafe
 Werkzeug
-zipp 
+zipp
+autogluon 

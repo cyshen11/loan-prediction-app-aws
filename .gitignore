@@ -170,3 +170,6 @@ datasets/
 
 # AWS SAM
 app/.aws-sam/
+
+# venv
+app/flask/.venv3/

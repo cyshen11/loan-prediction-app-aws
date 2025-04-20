@@ -2,7 +2,7 @@
 
 {% block content %}
 <form method="post" id="loan-form">
-  <select name="district" aria-label="Select your district..." required>
+  <select id="district" name="district" aria-label="Select your district..." required>
     <option selected disabled value="">
       Select your district...
     </option>
@@ -10,82 +10,78 @@
       <option>{{ district }}</option>
     {% endfor %}
   </select>
+  <label for="balance">
+    Balance
+    <input 
+      type="number" 
+      id="balance" 
+      name="balance" 
+      placeholder="5000",
+      aria-label="Number"
+    >
+  </label>
   <div><label for=""></label></div>
   <div class="grid">
     <label for="loan-amount">
       Loan Amount
       <input 
-        type="text" 
+        type="number" 
         id="loan-amount" 
         name="loan-amount" 
         placeholder="10000",
-        onChange="check_numeric(this)"
-        aria-describedby="loan-amount-helper"
+        aria-label="Number"
       >
-      <small id="loan-amount-helper" style="visibility:hidden">Please provide numeric value</small>
     </label>
     <label for="loan-duration">
       Loan Duration (Years)
       <input 
-        type="text" 
+        type="number" 
         id="loan-duration" 
         name="loan-duration" 
         placeholder="10",
-        onChange="check_numeric(this)"
-        aria-describedby="loan-duration-helper"
+        aria-label="Number"
       >
       <small id="loan-duration-helper" style="visibility:hidden">Please provide numeric value</small>
     </label>
     <label for="loan-payments">
       Loan Payments
       <input 
-        type="text" 
+        type="number" 
         id="loan-payments" 
         name="loan-payments" 
         placeholder="1000",
-        onChange="check_numeric(this)"
-        aria-describedby="loan-payments-helper"
+        aria-label="Number"
       >
       <small id="loan-payments-helper" style="visibility:hidden">Please provide numeric value</small>
     </label>
   </div>
   <div class="grid">
-    <label for="balance">
-      Balance
+    <label for="transactions-date">
+      Last Transaction Date
+      <input type="date" id="transactions-date" name="transactions-date" aria-label="Date">
+    </label>
+    <label for="transaction-amount">
+      Last Transaction Amount
       <input 
-        type="text" 
-        id="balance" 
-        name="balance" 
-        placeholder="5000",
-        onChange="check_numeric(this)"
-        aria-describedby="balance-helper"
+        type="number" 
+        id="transaction-amount" 
+        name="transaction-amount" 
+        placeholder="200",
+        aria-label="Number"
       >
-      <small id="balance-helper" style="visibility:hidden">Please provide numeric value</small>
+      <small id="transaction-amount-helper" style="visibility:hidden">Please provide numeric value</small>
     </label>
     <label for="daily-transactions">
       Number of Daily Transactions
       <input 
-        type="text" 
+        type="number" 
         id="daily-transactions" 
         name="daily-transactions" 
         placeholder="2",
-        onChange="check_numeric(this)"
-        aria-describedby="daily-transactions-helper"
+        aria-label="Number"
       >
       <small>Based on past 3 months</small>
       <small id="daily-transactions-helper" style="visibility:hidden">Please provide numeric value</small>
-    </label>
-    <label for="transactions-amount">
-      Latest Transaction Amount
-      <input 
-        type="text" 
-        id="transaction-amount" 
-        name="transaction-amount" 
-        placeholder="200",
-        onChange="check_numeric(this)"
-        aria-describedby="transaction-amount-helper"
-      >
-      <small id="transaction-amount-helper" style="visibility:hidden">Please provide numeric value</small>
     </label>
   </div>
   <div class="grid">
@@ -118,13 +114,6 @@
   <script src="{{url_for('static', filename='js/jquery-3.7.1.min.js')}}"></script>
 
   <script type="text/javascript">
-    function check_numeric(element) {
-      var is_val_numeric = isNaN(element.value)? true : false;
-      var visibility = isNaN(element.value)? "visible" : "hidden";
-      element.setAttribute("aria-invalid", is_val_numeric);
-      document.getElementById(element.id + "-helper").style.visibility = visibility;
-    }
-
     $(document).on('submit','#loan-form',function(e)
                    {
       e.preventDefault();
@@ -132,7 +121,14 @@
         type:'POST',
         url:'/',
         data:{
-          todo:$("#todo").val()
+          "transactions-date": $("#transactions-date").val(),
+          "loan-duration": $("#loan-duration").val(),
+          "district": $("#district").val(),
+          "loan-payments": $("#loan-payments").val(),
+          "loan-amount": $("#loan-amount").val(),
+          "balance": $("#balance").val(),
+          "daily-transactions": $("#daily-transactions").val(),
+          "transaction-amount": $("#transaction-amount").val()
         },
         success:function()
         {
