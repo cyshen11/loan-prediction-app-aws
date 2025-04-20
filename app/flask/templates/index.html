@@ -10,7 +10,9 @@
       name="loan-amount" 
       placeholder="10000",
       onChange="check_numeric(this)"
+      aria-describedby="loan-amount-helper"
     >
+    <small id="loan-amount-helper" style="visibility:hidden">Please provide numeric value</small>
   </label>
 </div>
 {% endblock %}
@@ -18,6 +20,8 @@
 {% block script %}
   function check_numeric(element) {
     var is_val_numeric = isNaN(element.value)? true : false;
+    var visibility = isNaN(element.value)? "visible" : "hidden";
     element.setAttribute("aria-invalid", is_val_numeric);
+    document.getElementById("loan-amount-helper").style.visibility = visibility;
   }
 {% endblock %}
