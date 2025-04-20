@@ -1,4 +1,23 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="grid">
+  <label for="loan-amount">
+    Loan Amount
+    <input 
+      type="text" 
+      id="loan-amount" 
+      name="loan-amount" 
+      placeholder="10000",
+      onChange="check_numeric(this)"
+    >
+  </label>
+</div>
+{% endblock %}
+
+{% block script %}
+  function check_numeric(element) {
+    var is_val_numeric = isNaN(element.value)? true : false;
+    element.setAttribute("aria-invalid", is_val_numeric);
+  }
 {% endblock %}
