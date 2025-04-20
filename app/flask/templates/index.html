@@ -90,11 +90,12 @@
     <div></div>
   </div>
 </form>
-<dialog id="modal">
+{% if show_modal %}
+<dialog id="modal" open>
   <article>
     <header>
       <button id="close-dialog" aria-label="Close" rel="prev"></button>
-      <h2>🗓️ Thank You for Registering!</h2>
+      <h2>{{ loan_status }}</h2>
     </header>
     <p>
       We're excited to have you join us for our
@@ -107,6 +108,7 @@
     </ul>
   </article>
 </dialog>
+{% endif %}
 
 {% endblock %}
 
@@ -114,28 +116,28 @@
   <script src="{{url_for('static', filename='js/jquery-3.7.1.min.js')}}"></script>
 
   <script type="text/javascript">
-    $(document).on('submit','#loan-form',function(e)
-                   {
-      e.preventDefault();
-      $.ajax({
-        type:'POST',
-        url:'/',
-        data:{
-          "transactions-date": $("#transactions-date").val(),
-          "loan-duration": $("#loan-duration").val(),
-          "district": $("#district").val(),
-          "loan-payments": $("#loan-payments").val(),
-          "loan-amount": $("#loan-amount").val(),
-          "balance": $("#balance").val(),
-          "daily-transactions": $("#daily-transactions").val(),
-          "transaction-amount": $("#transaction-amount").val()
-        },
-        success:function()
-        {
-          document.getElementById("modal").showModal()
-        }
-      })
-    });
+    // $(document).on('submit','#loan-form',function(e)
+    //                {
+    //   e.preventDefault();
+    //   $.ajax({
+    //     type:'POST',
+    //     url:'/',
+    //     data:{
+    //       "transactions-date": $("#transactions-date").val(),
+    //       "loan-duration": $("#loan-duration").val(),
+    //       "district": $("#district").val(),
+    //       "loan-payments": $("#loan-payments").val(),
+    //       "loan-amount": $("#loan-amount").val(),
+    //       "balance": $("#balance").val(),
+    //       "daily-transactions": $("#daily-transactions").val(),
+    //       "transaction-amount": $("#transaction-amount").val()
+    //     },
+    //     success:function()
+    //     {
+    //       document.getElementById("modal").showModal()
+    //     }
+    //   })
+    // });
 
     const closeDialogButton = document.getElementById('close-dialog')
     closeDialogButton.addEventListener("click", () => {

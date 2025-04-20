@@ -25,12 +25,20 @@ def loan_prediction_app():
   'Znojmo', 'Sokolov', 'Klatovy']
     district_names.sort()
     
+    loan_status = ""
+    show_modal = False
+
     if request.method == "POST":
         data = get_form_data(request)
         # print(data.iloc[0])
-        predict_loan_status(data)
+        loan_status=predict_loan_status(data)
+        show_modal=True
         
-    return render_template('index.html', district_names=district_names)
+    return render_template(
+        'index.html', 
+        district_names=district_names, loan_status=loan_status,
+        show_modal=show_modal
+    )
 
 def get_form_data(request):
     return pd.DataFrame(data={
@@ -47,5 +55,9 @@ def get_form_data(request):
 
 def predict_loan_status(data):
     predictor = TabularPredictor.load('./static/model/final')
-    prediction = predictor.predict(data)
-    print(prediction.iloc[0])
+    prediction = predictor.predict(data).iloc[0]
+    
+    if prediction == "A":
+        return "Loan will be paid off!"
+    else:
+        return "Loan will be not be paid off!"
