@@ -27,6 +27,16 @@
     <small id="loan-duration-helper" style="visibility:hidden">Please provide numeric value</small>
   </label>
 </div>
+<div class="grid">
+  <select name="district" aria-label="Select your district..." required>
+    <option selected disabled value="">
+      Select your district...
+    </option>
+    {% for district in district_names %}
+      <option>{{ district }}</option>
+    {% endfor %}
+  </select>
+</div>
 {% endblock %}
 
 {% block script %}
