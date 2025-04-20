@@ -1,6 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<select name="district" aria-label="Select your district..." required>
+  <option selected disabled value="">
+    Select your district...
+  </option>
+  {% for district in district_names %}
+    <option>{{ district }}</option>
+  {% endfor %}
+</select>
+<div><label for=""></label></div>
 <div class="grid">
   <label for="loan-amount">
     Loan Amount
@@ -20,22 +29,68 @@
       type="text" 
       id="loan-duration" 
       name="loan-duration" 
-      placeholder="20",
+      placeholder="10",
       onChange="check_numeric(this)"
       aria-describedby="loan-duration-helper"
     >
     <small id="loan-duration-helper" style="visibility:hidden">Please provide numeric value</small>
   </label>
+  <label for="loan-payments">
+    Loan Payments
+    <input 
+      type="text" 
+      id="loan-payments" 
+      name="loan-payments" 
+      placeholder="1000",
+      onChange="check_numeric(this)"
+      aria-describedby="loan-payments-helper"
+    >
+    <small id="loan-payments-helper" style="visibility:hidden">Please provide numeric value</small>
+  </label>
 </div>
 <div class="grid">
-  <select name="district" aria-label="Select your district..." required>
-    <option selected disabled value="">
-      Select your district...
-    </option>
-    {% for district in district_names %}
-      <option>{{ district }}</option>
-    {% endfor %}
-  </select>
+  <label for="balance">
+    Balance
+    <input 
+      type="text" 
+      id="balance" 
+      name="balance" 
+      placeholder="5000",
+      onChange="check_numeric(this)"
+      aria-describedby="balance-helper"
+    >
+    <small id="balance-helper" style="visibility:hidden">Please provide numeric value</small>
+  </label>
+  <label for="daily-transactions">
+    Number of Daily Transactions
+    <input 
+      type="text" 
+      id="daily-transactions" 
+      name="daily-transactions" 
+      placeholder="2",
+      onChange="check_numeric(this)"
+      aria-describedby="daily-transactions-helper"
+    >
+    <small>Based on past 3 months</small>
+    <small id="daily-transactions-helper" style="visibility:hidden">Please provide numeric value</small>
+  </label>
+  <label for="transactions-amount">
+    Latest Transaction Amount
+    <input 
+      type="text" 
+      id="transaction-amount" 
+      name="transaction-amount" 
+      placeholder="200",
+      onChange="check_numeric(this)"
+      aria-describedby="transaction-amount-helper"
+    >
+    <small id="transaction-amount-helper" style="visibility:hidden">Please provide numeric value</small>
+  </label>
+</div>
+<div class="grid">
+  <div></div>
+  <button>Predict loan status!</button>
+  <div></div>
 </div>
 {% endblock %}
 
