@@ -14,6 +14,18 @@
     >
     <small id="loan-amount-helper" style="visibility:hidden">Please provide numeric value</small>
   </label>
+  <label for="loan-duration">
+    Loan Duration (Years)
+    <input 
+      type="text" 
+      id="loan-duration" 
+      name="loan-duration" 
+      placeholder="20",
+      onChange="check_numeric(this)"
+      aria-describedby="loan-duration-helper"
+    >
+    <small id="loan-duration-helper" style="visibility:hidden">Please provide numeric value</small>
+  </label>
 </div>
 {% endblock %}
 
@@ -22,6 +34,6 @@
     var is_val_numeric = isNaN(element.value)? true : false;
     var visibility = isNaN(element.value)? "visible" : "hidden";
     element.setAttribute("aria-invalid", is_val_numeric);
-    document.getElementById("loan-amount-helper").style.visibility = visibility;
+    document.getElementById(element.id + "-helper").style.visibility = visibility;
   }
 {% endblock %}
