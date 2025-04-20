@@ -36,7 +36,7 @@ class LoanForm(FlaskForm):
     )
     balance = IntegerField('Balance', [InputRequired()])
     loan_amount = IntegerField('Loan Amount', [InputRequired()])
-    loan_duration = IntegerField('Loan Duration (Years)', [InputRequired()])
+    loan_duration = IntegerField('Loan Duration (Months)', [InputRequired()])
     loan_payments = IntegerField('Loan Payments', [InputRequired()])
     last_transaction_date = DateField('Last Transaction Date', [InputRequired()])
     last_transaction_amount = IntegerField('Last Transaction Amount', [InputRequired()])
