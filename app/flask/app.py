@@ -1,11 +1,15 @@
 from flask import Flask, render_template, url_for, request
+from flask_wtf import FlaskForm
+from wtforms import SelectField, IntegerField, DateField
+from wtforms.validators import InputRequired
 from autogluon.tabular import TabularPredictor
 import pandas as pd
+import random
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = str(random.random())
 
-@app.route("/", methods=["POST", "GET"])
-def loan_prediction_app():
+class LoanForm(FlaskForm):
     district_names = ['Rokycany', 'Louny', 'Strakonice', 'Pribram', 'Hl.m. Praha',
   'Brno - mesto', 'Melnik', 'Prachatice', 'Havlickuv Brod', 'Tachov',
   'Bruntal', 'Zlin', 'Vyskov', 'Kromeriz', 'Pelhrimov',
@@ -25,18 +29,39 @@ def loan_prediction_app():
   'Znojmo', 'Sokolov', 'Klatovy']
     district_names.sort()
     
+    district = SelectField(
+        'District',
+        validators = [InputRequired()],
+        choices=district_names
+    )
+    balance = IntegerField('Balance', [InputRequired()])
+    loan_amount = IntegerField('Loan Amount', [InputRequired()])
+    loan_duration = IntegerField('Loan Duration (Years)', [InputRequired()])
+    loan_payments = IntegerField('Loan Payments', [InputRequired()])
+    last_transaction_date = DateField('Last Transaction Date', [InputRequired()])
+    last_transaction_amount = IntegerField('Last Transaction Amount', [InputRequired()])
+    daily_transactions = IntegerField('Number of Daily Transactions on Average', [InputRequired()])
+
+@app.route("/", methods=["POST", "GET"])
+def loan_prediction_app():    
     loan_status = ""
     show_modal = False
-
-    if request.method == "POST":
+    form = LoanForm()
+    if form.validate_on_submit():
         data = get_form_data(request)
-        # print(data.iloc[0])
         loan_status=predict_loan_status(data)
         show_modal=True
+        return render_template(
+            'index.html', 
+            form=form, 
+            loan_status=loan_status,
+            show_modal=show_modal
+        )
         
     return render_template(
         'index.html', 
-        district_names=district_names, loan_status=loan_status,
+        form=form, 
+        loan_status=loan_status,
         show_modal=show_modal
     )
 
@@ -60,4 +85,4 @@ def predict_loan_status(data):
     if prediction == "A":
         return "Loan will be paid off!"
     else:
-        return "Loan will be not be paid off!"
+        return "Loan will not be paid off!"
