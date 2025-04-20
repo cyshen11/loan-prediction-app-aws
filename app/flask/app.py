@@ -26,9 +26,9 @@ def loan_prediction_app():
     district_names.sort()
     
     if request.method == "POST":
-        df = get_form_data(request)
-        print(df.iloc[0])
-        # predict_loan_status()
+        data = get_form_data(request)
+        # print(data.iloc[0])
+        predict_loan_status(data)
         
     return render_template('index.html', district_names=district_names)
 
@@ -45,5 +45,7 @@ def get_form_data(request):
         'trans_amount_latest': [request.form.get('transaction-amount')]
     })
 
-def predict_loan_status():
+def predict_loan_status(data):
     predictor = TabularPredictor.load('./static/model/final')
+    prediction = predictor.predict(data)
+    print(prediction.iloc[0])
