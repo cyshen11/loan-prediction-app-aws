@@ -1,8 +1,8 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, request
 
 app = Flask(__name__)
 
-@app.route("/")
+@app.route("/", methods=["POST", "GET"])
 def loan_prediction_app():
     district_names = ['Rokycany', 'Louny', 'Strakonice', 'Pribram', 'Hl.m. Praha',
   'Brno - mesto', 'Melnik', 'Prachatice', 'Havlickuv Brod', 'Tachov',
@@ -23,4 +23,6 @@ def loan_prediction_app():
   'Znojmo', 'Sokolov', 'Klatovy']
     district_names.sort()
     
+    if request.method == "POST":
+        pass
     return render_template('index.html', district_names=district_names)
