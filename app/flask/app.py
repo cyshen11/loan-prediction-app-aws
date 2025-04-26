@@ -68,14 +68,13 @@ def loan_prediction_app():
 def get_form_data(request):
     return pd.DataFrame(data={
         'district_name': [request.form.get('district')],
-        'trans_date_latest': [request.form.get('transactions-date')],
-        'loan_duration': [request.form.get('loan-duration')],
-        'district_name': [request.form.get('district')],
-        'loan_payments': [request.form.get('loan-payments')],
-        'loan_amount': [request.form.get('loan-amount')],
+        'trans_date_latest': [request.form.get('last_transaction_date')],
+        'loan_duration': [request.form.get('loan_duration')],
+        'loan_payments': [request.form.get('loan_payments')],
+        'loan_amount': [request.form.get('loan_amount')],
         'trans_balance_latest': [request.form.get('balance')],
-        'median_daily_trans_count_p3m': [request.form.get('daily-transactions')],
-        'trans_amount_latest': [request.form.get('transaction-amount')]
+        'median_daily_trans_count_p3m': [request.form.get('daily_transactions')],
+        'trans_amount_latest': [request.form.get('last_transaction_amount')]
     })
 
 def predict_loan_status(data):
