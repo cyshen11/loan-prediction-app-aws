@@ -3,10 +3,6 @@
 {% block content %}
 <form method="post" id="loan-form">
   {{ form.csrf_token }}
-  {{ form.district.label }}{{ form.district() }}
-  {{ form.balance.label }}{{ form.balance() }}
-  <br>
-  <br>
   <div class="grid">
     {{ form.loan_amount.label }}{{ form.loan_amount() }}
     {{ form.loan_duration.label }}{{ form.loan_duration() }}
@@ -15,17 +11,38 @@
   <br>
   <div class="grid">
     {{ form.loan_payments.label }}{{ form.loan_payments() }}
-    {{ form.last_transaction_date.label }}{{ form.last_transaction_date() }}
+    {{ form.loan_date.label }}{{ form.loan_date() }}
   </div>
   <br>
   <br>
   <div class="grid">
-
-    {{ form.last_transaction_amount.label }}{{ form.last_transaction_amount() }}
-    {{ form.daily_transactions.label }}{{ form.daily_transactions() }}
+    {{ form.account_creation_date.label }}{{ form.account_creation_date() }}
+    {{ form.account_frequency.label }}{{ form.account_frequency() }}
   </div>
   <br>
   <br>
+  <div class="grid">
+    {{ form.avg_order_amount.label }}{{ form.avg_order_amount() }}
+    {{ form.avg_trans_amount.label }}{{ form.avg_trans_amount() }}
+  </div>
+  <br>
+  <br>
+  <div class="grid">
+    {{ form.avg_trans_balance.label }}{{ form.avg_trans_balance() }}
+    {{ form.n_trans.label }}{{ form.n_trans() }}
+  </div>
+  <br>
+  <br>
+  <div class="grid">
+    {{ form.card_type.label }}{{ form.card_type() }}
+    {{ form.avg_salary.label }}{{ form.avg_salary() }}
+  </div>
+  <br>
+  <br>
+  <div class="grid">
+    {{ form.gender.label }}{{ form.gender() }}
+    {{ form.age.label }}{{ form.age() }}
+  </div>
   <div class="grid">
     <div></div>
     <button data-target="modal">Predict loan status!</button>
