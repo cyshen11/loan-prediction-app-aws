@@ -1,30 +1,43 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="color-scheme" content="light dark">
-    <link rel="stylesheet" href="{{url_for('static', filename='css/pico-main/css/pico.min.css')}}">
-    <title>{% block header %}{% endblock %}</title>
-  </head>
-  <body>
-    <header class="container">
-      <nav>
-        <ul>
-          <li><h1>Loan Status Prediction App</h1></li>
-        </ul>
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="{{url_for('about')}}">About</a></li>
-          <li><a href="https://github.com/cyshen11/loan-prediction-app-aws" target="_blank"><img src="{{url_for('static', filename='images/github-mark/github-mark-white.svg')}}" width="30"></a></li>
-        </ul>
-      </nav>
-    </header>
-    
-    <main class="container">
-      {% block content %}{% endblock %}
-    </main>
-
-    {% block script %}{% endblock %}
-  </body>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="color-scheme" content="light dark">
+        <link rel="stylesheet"
+              href="{{ url_for('static', filename='css/pico-main/css/pico.min.css') }}">
+        <title>
+            {% block header %}{% endblock %}
+        </title>
+    </head>
+    <body>
+        <header class="container">
+            <nav>
+                <ul>
+                    <li>
+                        <h1>Loan Status Prediction App</h1>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('about') }}">About</a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/cyshen11/loan-prediction-app-aws"
+                           target="_blank">
+                            <img src="{{ url_for('static', filename='images/github-mark/github-mark-white.svg') }}"
+                                 width="30">
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main class="container">
+            {% block content %}{% endblock %}
+        </main>
+        {% block script %}{% endblock %}
+    </body>
 </html>
