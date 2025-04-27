@@ -5,10 +5,10 @@ from wtforms.validators import InputRequired
 from autogluon.tabular import TabularPredictor
 import pandas as pd
 import random
+import markdown
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = str(random.random())
-
 
 class LoanForm(FlaskForm):
     loan_duration = IntegerField("Loan Duration (Months)", [InputRequired()])
@@ -69,8 +69,11 @@ def loan_prediction_app():
 
 @app.route("/about")
 def about():
+    with open('../../README.md') as f:
+        readme_html = markdown.markdown(f.read())
     return render_template(
-        "about.html"
+        "about.html",
+        readme_html=readme_html
     )
 
 
