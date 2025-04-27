@@ -67,6 +67,12 @@ def loan_prediction_app():
         "index.html", form=form, loan_status=loan_status, show_modal=show_modal
     )
 
+@app.route("/about")
+def about():
+    return render_template(
+        "about.html"
+    )
+
 
 def get_form_data(request):
     data = {}
