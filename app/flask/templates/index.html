@@ -1,48 +1,52 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<h4>Fill up each field at every details section to predict the loan status!</h4>
 <form method="post" id="loan-form">
   {{ form.csrf_token }}
-  <div class="grid">
-    {{ form.loan_amount.label }}{{ form.loan_amount() }}
-    {{ form.loan_duration.label }}{{ form.loan_duration() }}
-  </div>
-  <br>
-  <br>
-  <div class="grid">
-    {{ form.loan_payments.label }}{{ form.loan_payments() }}
-    {{ form.loan_date.label }}{{ form.loan_date() }}
-  </div>
-  <br>
-  <br>
-  <div class="grid">
-    {{ form.account_creation_date.label }}{{ form.account_creation_date() }}
-    {{ form.account_frequency.label }}{{ form.account_frequency() }}
-  </div>
-  <br>
-  <br>
-  <div class="grid">
-    {{ form.avg_order_amount.label }}{{ form.avg_order_amount() }}
-    {{ form.avg_trans_amount.label }}{{ form.avg_trans_amount() }}
-  </div>
-  <br>
-  <br>
-  <div class="grid">
-    {{ form.avg_trans_balance.label }}{{ form.avg_trans_balance() }}
-    {{ form.n_trans.label }}{{ form.n_trans() }}
-  </div>
-  <br>
-  <br>
-  <div class="grid">
-    {{ form.card_type.label }}{{ form.card_type() }}
-    {{ form.avg_salary.label }}{{ form.avg_salary() }}
-  </div>
-  <br>
-  <br>
-  <div class="grid">
-    {{ form.gender.label }}{{ form.gender() }}
-    {{ form.age.label }}{{ form.age() }}
-  </div>
+  <details name="loan-details">
+    <summary role="button" class="outline">Loan Details</summary>
+    <div class="grid">
+      {{ form.loan_amount.label }}{{ form.loan_amount() }}
+      {{ form.loan_duration.label }}{{ form.loan_duration() }}
+    </div>
+    <br>
+    <div class="grid">
+      {{ form.loan_payments.label }}{{ form.loan_payments() }}
+      {{ form.loan_date.label }}{{ form.loan_date() }}
+    </div>
+  </details>
+  <details name="account-details">
+    <summary role="button" class="outline">Account Details</summary>
+    <div class="grid">
+      {{ form.account_creation_date.label }}{{ form.account_creation_date() }}
+      {{ form.account_frequency.label }}{{ form.account_frequency() }}
+    </div>
+  </details>
+  <details name="transactions-details">
+    <summary role="button" class="outline">Transactions Details</summary>
+    <div class="grid">
+      {{ form.avg_order_amount.label }}{{ form.avg_order_amount() }}
+      {{ form.avg_trans_amount.label }}{{ form.avg_trans_amount() }}
+    </div>
+    <br>
+    <div class="grid">
+      {{ form.avg_trans_balance.label }}{{ form.avg_trans_balance() }}
+      {{ form.n_trans.label }}{{ form.n_trans() }}
+    </div>
+  </details>
+  <details name="misc-details">
+    <summary role="button" class="outline">Misc Details</summary>
+    <div class="grid">
+      {{ form.card_type.label }}{{ form.card_type() }}
+      {{ form.avg_salary.label }}{{ form.avg_salary() }}
+    </div>
+    <br>
+    <div class="grid">
+      {{ form.gender.label }}{{ form.gender() }}
+      {{ form.age.label }}{{ form.age() }}
+    </div>
+  </details>
   <div class="grid">
     <div></div>
     <button data-target="modal">Predict loan status!</button>
@@ -54,14 +58,8 @@
   <article>
     <header>
       <button id="close-dialog" aria-label="Close" rel="prev"></button>
-      <h2>{{ loan_status }}</h2>
     </header>
-    <p>
-    </p>
-    <ul>
-      <li>Date: Saturday, April 15</li>
-      <li>Time: 10:00am - 12:00pm</li>
-    </ul>
+    <h2 style="text-align:center">{{ loan_status }}</h2>
   </article>
 </dialog>
 {% endif %}
