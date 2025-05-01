@@ -162,6 +162,15 @@ cython_debug/
 #.idea/
 .DS_Store
 financial2.sql
-user.pem
-user2.pem
+*.pem
 .streamlit/secrets.toml
+*.key
+
+# Datasets
+datasets/
+
+# AWS SAM
+app/.aws-sam/
+
+# venv
+app/.venv5/
