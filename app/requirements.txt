@@ -1,5 +1,5 @@
 absl-py==2.2.2
-accelerate==0.34.2
+accelerate
 adagio==0.2.6
 aiohappyeyeballs==2.6.1
 aiohttp==3.11.18
@@ -11,13 +11,13 @@ antlr4-python3-runtime==4.9.3
 appdirs==1.4.4
 async-timeout==5.0.1
 attrs==25.3.0
-autogluon==1.1
-autogluon.common==1.1
-autogluon.core==1.1
-autogluon.features==1.1
-autogluon.multimodal==1.1
-autogluon.tabular==1.1
-autogluon.timeseries==1.1
+autogluon
+autogluon.common
+autogluon.core
+autogluon.features
+autogluon.multimodal
+autogluon.tabular
+autogluon.timeseries
 beautifulsoup4==4.13.4
 blinker==1.9.0
 blis==0.7.11
@@ -129,7 +129,7 @@ prometheus_client==0.21.1
 propcache==0.3.1
 proto-plus==1.26.1
 protobuf==6.30.2
-psutil==6.1.1
+psutil
 py-spy==0.4.0
 py4j==0.10.9.9
 pyarrow==17.0.0
