@@ -164,6 +164,7 @@ cython_debug/
 financial2.sql
 *.pem
 .streamlit/secrets.toml
+*.key
 
 # Datasets
 datasets/
@@ -172,4 +173,4 @@ datasets/
 app/.aws-sam/
 
 # venv
-app/flask/.venv3/
+app/.venv5/
