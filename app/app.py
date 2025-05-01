@@ -69,7 +69,7 @@ def loan_prediction_app():
 
 @app.route("/about")
 def about():
-    with open('../../README.md') as f:
+    with open('../README.md') as f:
         readme_html = markdown.markdown(f.read())
     return render_template(
         "about.html",
