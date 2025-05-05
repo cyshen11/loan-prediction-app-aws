@@ -8,5 +8,4 @@ This loan prediction app, powered by Machine Learning predicts whether the loan 
 - Database: AWS RDS (MariaDB)
 - File Storage: AWS S3
 - Machine Learning: AutoGluon
-- Deployment: AWS SAM
-- Integration: Pytest
+- Deployment: Render
